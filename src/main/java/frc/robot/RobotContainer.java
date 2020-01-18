@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.MoveMotor;
-import frc.robot.commands.goToZero;
+import frc.robot.commands.m1000;
+import frc.robot.commands.m2500;
+import frc.robot.commands.m500;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -25,10 +26,12 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   private Joystick joy;
-  private JoystickButton mover;
-  private JoystickButton zeroer;
-  private final MoveMotor move = new MoveMotor();
-  private final goToZero zero = new goToZero();
+  private JoystickButton z2500;
+  private JoystickButton z500;
+  private JoystickButton z1000;
+  private final m2500 move = new m2500();
+  private final m500 zero = new m500();
+  private final m1000 five = new m1000();
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -41,8 +44,9 @@ public class RobotContainer {
    */
   public RobotContainer() {
     joy = new Joystick(1);
-    mover = new JoystickButton(joy, 4);
-    zeroer = new JoystickButton(joy, 3);
+    z2500 = new JoystickButton(joy, 4);
+    z500 = new JoystickButton(joy, 3);
+    z1000 = new JoystickButton(joy, 5);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -55,8 +59,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    mover.whileHeld(move);
-    zeroer.whileHeld(zero);
+    z2500.whileHeld(move);
+    z500.whileHeld(zero);
+    z1000.whileHeld(five);
   }
 
 

@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Factory;
 import frc.robot.subsystems.PidChassis;
 
-public class MoveMotor extends CommandBase {
+public class m500 extends CommandBase {
   private PidChassis chassis;
   /**
-   * Creates a new MoveMotor.
+   * Creates a new goToZero.
    */
-  public MoveMotor() {
+  public m500() {
     chassis = Factory.getPID();
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,7 +29,7 @@ public class MoveMotor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    chassis.getDrive(3000.0);
+    chassis.getDrive(500.0);
   }
 
   // Called once the command ends or is interrupted.

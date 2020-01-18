@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Factory;
 import frc.robot.subsystems.PidChassis;
 
-public class goToZero extends CommandBase {
+public class m1000 extends CommandBase {
   private PidChassis chassis;
   /**
-   * Creates a new goToZero.
+   * Creates a new five.
    */
-  public goToZero() {
+  public m1000() {
     chassis = Factory.getPID();
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,7 +29,7 @@ public class goToZero extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    chassis.getDrive(0.0);
+    chassis.getDrive(1000.0);
   }
 
   // Called once the command ends or is interrupted.

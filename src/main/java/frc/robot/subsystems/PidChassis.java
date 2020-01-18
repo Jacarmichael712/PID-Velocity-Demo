@@ -23,14 +23,16 @@ public class PidChassis extends SubsystemBase {
   public PidChassis(TalonSRX center1) {
       center = center1;
 
-      center.configAllowableClosedloopError(0, 1, 1);
+      center.configAllowableClosedloopError(0, 0, 1);
       center.selectProfileSlot(0, 0);
-      center.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
+      center.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
       center.setSensorPhase(true);
       center.setInverted(true);
-      center.config_kP(0, 0.2895);
-      center.config_kI(0, 0.001);
-      center.config_kD(0, 2.0);
+      center.config_kF(0, 0.18);
+      center.config_kP(0, 0.23);
+      center.config_kI(0, 0.0007);
+      center.config_kD(0, 0.0);
+      
       
       
   }
@@ -39,10 +41,15 @@ public class PidChassis extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void getDrive(double position){
-    center.set(ControlMode.Position, position);
-    System.out.println(center.getSensorCollection().getPulseWidthPosition());
-    SmartDashboard.putNumber("Encoder Pos", center.getSensorCollection().getPulseWidthPosition());
+  public void getDrive(double velocity){
+    center.set(ControlMode.Velocity, velocity);
+    System.out.println(center.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("Encoder Pos", center.getSelectedSensorVelocity());
+  }
+  public void getPercent(double percent){
+    center.set(ControlMode.PercentOutput, percent);
+    System.out.println(center.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("Encoder Pos", center.getSelectedSensorVelocity());
   }
 
   public void stopDrive(){
